@@ -30,7 +30,7 @@ copy_service_files: setup_service_files_path
 # Reloads systemd user daemon and starts the pod
 start_services: 
   systemctl --user daemon-reload
-  systemctl --user start vikunja.pod
+  systemctl --user start vikunja-pod
 
 [private]
 @check_deps:
