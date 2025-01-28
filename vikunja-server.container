@@ -4,6 +4,7 @@ Pod=vikunja.pod
 Image=docker.io/vikunja/vikunja
 AutoUpdate=registry
 Volume=/opt/vikunja/files:/app/vikunja/files:Z
+Volume=/opt/vikunja/config.yml:/etc/vikunja/config.yml
 EnvironmentFile=/opt/vikunja/.env.server
 
 [Service]

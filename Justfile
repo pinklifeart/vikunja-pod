@@ -58,6 +58,7 @@ generate_server_env:
   VIKUNJA_SERVICE_JWTSECRET={{jwt_secret}}
   EOF
 
+# TODO: Add a check for postgresql and files directorires in /opt/vikunja
 [private]
 check_installation_path:
   #!/usr/bin/env sh
