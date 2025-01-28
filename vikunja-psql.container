@@ -10,6 +10,7 @@ HealthInterval=2s
 Notify=healthy
 
 [Service]
+Type=notify
 Restart=unless-stopped
 TimeoutStartSec=90
 

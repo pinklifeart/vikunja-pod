@@ -7,7 +7,7 @@ Volume=/opt/vikunja/files:/app/vikunja/files:Z
 EnvironmentFile=/opt/vikunja/.env.server
 
 [Service]
-Restart=unless-stopped
+Restart=on-failure
 TimeoutStartSec=90
 
 [Install]
