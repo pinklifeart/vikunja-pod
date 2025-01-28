@@ -12,6 +12,7 @@ default:
 
 # Installs necessary configuration files without starting the pod
 install:
+  just prepare_installation_dir
   just generate_env_files
   just copy_service_files
 
