@@ -52,7 +52,7 @@ generate_db_env:
 generate_server_env:
   #!/usr/bin/env sh
   cat << EOF > {{join(installation_path,'.env.server')}}
-  VIKUNJA_SERVICE_PUBLICURL={{service_url}}
+  VIKUNJA_SERVICE_PUBLICURL=http://{{service_url}}
   VIKUNJA_SERVICE_JWTSECRET={{jwt_secret}}
   VIKUNJA_DATABASE_HOST=vikunja-db
   VIKUNJA_DATABASE_PASSWORD={{db_pass}}
