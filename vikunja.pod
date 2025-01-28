@@ -1,0 +1,5 @@
+[Pod]
+PodName=vikunja
+PodmanArgs=--infra-name=vikunja-pod
+PodmanArgs=--security-opt=label=level:s0:c85
+PublishPort=127.0.0.1:3456:3456

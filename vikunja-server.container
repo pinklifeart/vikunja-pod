@@ -1,0 +1,15 @@
+[Container]
+ContainerName=vikunja-server
+Pod=vikunja.pod
+Image=docker.io/vikunja/vikunja
+AutoUpdate=registry
+Volume=/opt/vikunja/files:/app/vikunja/files:Z
+EnvironmentFile=/opt/vikunja/.env.server
+
+[Service]
+Restart=unless-stopped
+TimeoutStartSec=90
+
+[Install]
+WantedBy=default.target
+After=vikunja-psql.service

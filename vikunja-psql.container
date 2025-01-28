@@ -1,0 +1,17 @@
+[Container]
+ContainerName=vikunja-psql
+Pod=vikunja.pod
+Image=docker.io/postgres
+AutoUpdate=registry
+Volume=/opt/vikunja/postgres:/var/lib/postgresql/data:Z
+EnvironmentFile=/opt/vikunja/.env.db
+HealthCmd=pg_isready -h localhost -U $$POSTGRES_USER
+HealthInterval=2s
+Notify=healthy
+
+[Service]
+Restart=unless-stopped
+TimeoutStartSec=90
+
+[Install]
+WantedBy=default.target
