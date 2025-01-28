@@ -27,7 +27,7 @@ generate_env_files: check_installation_path
 
 # Copies service files to $HOME/.config/containers/systemd
 copy_service_files: setup_service_files_path
-  cp ./vikunja* {{podman_service_files_path}}
+  cp ./service_files/vikunja* {{podman_service_files_path}}
 
 # Reloads systemd user daemon and starts the pod
 start_services: 
