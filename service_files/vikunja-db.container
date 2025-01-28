@@ -1,5 +1,5 @@
 [Container]
-ContainerName=vikunja-psql
+ContainerName=vikunja-db
 Pod=vikunja.pod
 Image=docker.io/postgres
 AutoUpdate=registry

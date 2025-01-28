@@ -1,5 +1,6 @@
 #!/usr/bin/env just --justfile
 
+service_url:=env('URL', `ip r get 1.2.3.4 | awk '{print $7}' | xargs`)
 password_dict:="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#%^*"
 installation_path:="/opt/vikunja"
 podman_service_files_path:=join(config_directory(), 'containers','systemd')
@@ -50,12 +51,13 @@ generate_db_env:
 generate_server_env:
   #!/usr/bin/env sh
   cat << EOF > {{join(installation_path,'.env.server')}}
-  VIKUNJA_DATABASE_HOST=vikunja-psql
+  VIKUNJA_SERVICE_PUBLICURL={{service_url}}
+  VIKUNJA_SERVICE_JWTSECRET={{jwt_secret}}
+  VIKUNJA_DATABASE_HOST=vikunja-db
   VIKUNJA_DATABASE_PASSWORD={{db_pass}}
   VIKUNJA_DATABASE_TYPE=postgres
   VIKUNJA_DATABASE_USER=vikunja
   VIKUNJA_DATABASE_DATABASE=vikunja
-  VIKUNJA_SERVICE_JWTSECRET={{jwt_secret}}
   EOF
 
 # TODO: Add a check for postgresql and files directorires in /opt/vikunja
@@ -74,6 +76,11 @@ check_installation_path:
     echo "Directory {{installation_path}} doesn't exist. Create the directory or specify a different path."
     exit 1
   fi
+
+[private]
+@prepare_installation_dir: check_installation_path
+  mkdir -pv {{join(installation_path, '{postgres,files}')}}
+  wget https://dl.vikunja.io/vikunja/unstable/config.yml.sample -O {{join(installation_path, 'config.yml')}}
 
 [private]
 setup_service_files_path:
