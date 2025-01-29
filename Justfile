@@ -29,6 +29,10 @@ generate_env_files: check_installation_path
 copy_service_files: setup_service_files_path
   cp ./service_files/vikunja* {{podman_service_files_path}}
 
+# Removes the service files from $HOME/.config/containers/systemd
+remove_service_files:
+  rm {{join(podman_service_files_path, 'vikunja*')}}
+
 # Reloads systemd user daemon and starts the pod
 start_services: 
   systemctl --user daemon-reload
