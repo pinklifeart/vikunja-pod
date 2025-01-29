@@ -1,6 +1,6 @@
 #!/usr/bin/env just --justfile
 
-service_url:=env('URL', `ip r get 1.2.3.4 | awk '{print $7}' | xargs`)
+service_url:=env('URL', '127.0.0.1')
 password_dict:="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#%^*"
 installation_path:="/opt/vikunja"
 podman_service_files_path:=join(config_directory(), 'containers','systemd')
