@@ -7,7 +7,8 @@ podman_service_files_path:=join(config_directory(), 'containers','systemd')
 db_pass:= choose('32', password_dict)
 jwt_secret:= choose('64', password_dict)
 
-default:
+[private]
+@default:
   just --list
 
 # Installs necessary configuration files without starting the pod
@@ -29,7 +30,7 @@ generate_env_files: check_installation_path
 copy_service_files: setup_service_files_path
   cp ./service_files/vikunja* {{podman_service_files_path}}
 
-# Removes the service files from $HOME/.config/containers/systemd
+# Removes service files from $HOME/.config/containers/systemd
 remove_service_files:
   rm {{join(podman_service_files_path, 'vikunja*')}}
 
