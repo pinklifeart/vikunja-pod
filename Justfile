@@ -41,6 +41,18 @@ start_services:
   systemctl --user daemon-reload
   systemctl --user start vikunja-pod
 
+remove_data:
+  #!/usr/bin/env sh
+  read -r -p "This will remove everything in {{installation_path}}. Are you sure? [y/N]"
+  case "$response" in 
+    [yY][eE][sS]|[yY])
+      rm -rf {{join(installation_path, '{.*,*}')}}
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
+
 [private]
 @check_deps:
   echo "Checking for podman and systemctl..."
