@@ -8,6 +8,7 @@ Volume=/opt/vikunja/config.yml:/etc/vikunja/config.yml
 EnvironmentFile=/opt/vikunja/.env.server
 
 [Service]
+Requires=vikunja-db.service
 Restart=on-failure
 TimeoutStartSec=90
 
