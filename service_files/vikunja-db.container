@@ -11,7 +11,7 @@ Notify=healthy
 
 [Service]
 Type=notify
-Restart=unless-stopped
+Restart=on-failure
 TimeoutStartSec=90
 
 [Install]
