@@ -41,6 +41,7 @@ remove_service_files:
   rm {{join(podman_service_files_path, 'vikunja-server.container')}}
   rm {{join(podman_service_files_path, 'vikunja-db.container')}}
   rm {{join(podman_service_files_path, 'vikunja.pod')}}
+  systemctl --user daemon-reload
 
 # Reloads systemd user daemon and starts the pod
 start_services: 
