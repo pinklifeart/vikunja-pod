@@ -31,7 +31,8 @@ copy_service_files: setup_service_files_path
   cp ./service_files/vikunja* {{podman_service_files_path}}
 
 # Cleans up installation_path and service files. Careful, it will remove your data.
-clean:
+@clean:
+  just stop
   just remove_data
   just remove_service_files
 
