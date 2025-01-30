@@ -41,6 +41,7 @@ start_services:
   systemctl --user daemon-reload
   systemctl --user start vikunja-pod
 
+# Removes everything from the installation_path.
 remove_data:
   #!/usr/bin/env sh
   read -r -p "This will remove everything in {{installation_path}}. Are you sure? [y/N]"
