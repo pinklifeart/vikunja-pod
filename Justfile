@@ -30,6 +30,11 @@ generate_env_files: check_installation_path
 copy_service_files: setup_service_files_path
   cp ./service_files/vikunja* {{podman_service_files_path}}
 
+# Cleans up installation_path and service files. Careful, it will remove your data.
+clean:
+  just remove_data
+  just remove_service_files
+
 # Removes service files from $HOME/.config/containers/systemd
 remove_service_files:
   rm {{join(podman_service_files_path, 'vikunja-server.container')}}
@@ -50,6 +55,7 @@ remove_data:
       rm -rf {{join(installation_path, '{.*,*}')}}
       ;;
     *)
+      echo Cancelling...
       exit 1
       ;;
   esac
